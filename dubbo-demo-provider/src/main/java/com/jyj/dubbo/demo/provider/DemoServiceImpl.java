@@ -20,4 +20,12 @@ public class DemoServiceImpl implements DemoService {
         return "Hello " + name + ", response from provider: " + RpcContext.getContext().getLocalAddressString();
     }
 
+    public String doWork(Integer number) {
+        System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "], Call doWork, request from consumer: " + RpcContext.getContext().getRemoteAddressString());
+        long sum = 0;
+        for (int i = 0; i < number; i++) {
+            sum += number;
+        }
+        return "doWork, sum " + sum + ", response from provider: " + RpcContext.getContext().getLocalAddressString();
+    }
 }

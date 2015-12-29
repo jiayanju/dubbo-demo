@@ -4,6 +4,7 @@ import com.jyj.dubbo.demo.service.DemoService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by george on 12/28/15.
@@ -18,9 +19,17 @@ public class DemoAction {
 
     public void start() throws Exception {
         for (int i = 0; i < Integer.MAX_VALUE; i++) {
-            String hello = demoService.sayHello("World" + i);
-            System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] " + hello);
-            Thread.sleep(1000);
+            Random random = new Random(System.currentTimeMillis());
+            int randomInt = random.nextInt();
+            String result = "";
+            if (randomInt % 2 == 0) {
+                result = demoService.sayHello("World" + i);
+            } else {
+                result = demoService.doWork(randomInt);
+            }
+            System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] " + result);
+            Thread.sleep(100);
+
         }
     }
 

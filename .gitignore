@@ -1,5 +1,6 @@
 # maven ignore
-target/
+dubbo-demo-provider/target/
+*/target/
 *.jar
 *.war
 *.zip
